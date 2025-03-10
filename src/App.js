@@ -8,7 +8,8 @@ import CreateUpdateTodo from './components/createupdatetodo';
 import ManageUsers from './components/manageusers';
 import CreateUpdateVehicles from './components/createupdatevehicle';
 import ProfileVehicleDashBoard from './components/vehicledashboard';
-import BookingDetails from './components/bookingdetails';
+import BookingDetails from './components/booking/bookingdetails';
+import CreateBooking from './components/booking/createbooking';
 function App() {
   return (
     <div>
@@ -28,6 +29,8 @@ function App() {
             <Route exact path="/todos/:id?" element={<CreateUpdateTodo/>} />
             <Route exact path="/bookings/:id?" element={<BookingDetails/>} />
             <Route exact path="/vehicles/:id?" element={<CreateUpdateVehicles/>} />
+            <Route exact path="/create-booking" element={<CreateBooking/>} />
+           
         </Routes>
         </main>
       </Router>
