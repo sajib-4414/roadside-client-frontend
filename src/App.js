@@ -3,11 +3,11 @@ import Footer from './components/common/footer';
 import {BrowserRouter as Router,  Routes ,Route } from 'react-router-dom';
 import Login from './components/login';
 import Register from './components/register';
-import TodoDashBoard from './components/tododashboard';
+import TodoDashBoard from './components/bookings-dashboard';
 import CreateUpdateTodo from './components/createupdatetodo';
 import ManageUsers from './components/manageusers';
-import CreateUpdateVehicles from './components/createupdatevehicle';
-import ProfileVehicleDashBoard from './components/vehicledashboard';
+import CreateUpdateVehicles from './components/vehicle/createupdatevehicle';
+import ProfileVehicleDashBoard from './components/vehicle/vehicledashboard';
 import BookingDetails from './components/booking/bookingdetails';
 import CreateBooking from './components/booking/createbooking';
 function App() {
