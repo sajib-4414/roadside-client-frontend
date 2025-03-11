@@ -44,6 +44,8 @@ const CreateBooking = () => {
     if (!formData.detailDescription.trim()) errors.detailDescription = 'Description is required';
     if (!formData.address.trim()) errors.address = 'Address is required';
     if (useExistingVehicle && !formData.vehicleId) errors.vehicleId = 'Please select a vehicle';
+    if (!formData.priority) errors.priority = 'Priority is required';
+    if (!formData.serviceType) errors.serviceType = 'Service Type is required';
 
     if (!useExistingVehicle) {
       if (!formData.vehicle.make.trim()) errors.make = 'Make is required';
@@ -68,7 +70,7 @@ const CreateBooking = () => {
       : { ...formData, vehicleId: null };
 
     try {
-      await axios.post(`${process.env.REACT_APP_USER_API_HOST}/bookings/`, payload, {
+      const response = await axios.post(`${process.env.REACT_APP_USER_API_HOST}/bookings`, payload, {
         headers: { Authorization: `Bearer ${accessToken}` }
       });
       navigate('/bookings');
@@ -140,6 +142,37 @@ const CreateBooking = () => {
             ))}
           </div>
         )}
+
+    <div className="form-group">
+          <label>Priority</label>
+          <select
+            className="form-control"
+            value={formData.priority}
+            onChange={(e) => setFormData({ ...formData, priority: e.target.value })}
+          >
+            <option value="NOW">NOW</option>
+            <option value="NEXT_DAY">NEXT DAY</option>
+            <option value="NEXT_BUSINESS_DAY">NEXT BUSINESS DAY</option>
+          </select>
+          {formErrors.priority && <div className="text-danger">{formErrors.priority}</div>}
+        </div>
+
+        <div className="form-group">
+          <label>Service Type</label>
+          <select
+            className="form-control"
+            value={formData.serviceType}
+            onChange={(e) => setFormData({ ...formData, serviceType: e.target.value })}
+          >
+            <option value="TOWING">TOWING</option>
+            <option value="BATTERY">BATTERY</option>
+            <option value="FUEL">FUEL</option>
+            <option value="TIRE">TIRE</option>
+            <option value="LOCK">LOCK</option>
+            <option value="MINOR_REPAIR">MINOR REPAIR</option>
+          </select>
+          {formErrors.serviceType && <div className="text-danger">{formErrors.serviceType}</div>}
+        </div>
 
         <div className="form-group">
           <label>Detail Description</label>

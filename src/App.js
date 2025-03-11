@@ -4,8 +4,6 @@ import {BrowserRouter as Router,  Routes ,Route } from 'react-router-dom';
 import Login from './components/login';
 import Register from './components/register';
 import TodoDashBoard from './components/bookings-dashboard';
-import CreateUpdateTodo from './components/createupdatetodo';
-import ManageUsers from './components/manageusers';
 import CreateUpdateVehicles from './components/vehicle/createupdatevehicle';
 import ProfileVehicleDashBoard from './components/vehicle/vehicledashboard';
 import BookingDetails from './components/booking/bookingdetails';
@@ -25,8 +23,6 @@ function App() {
             <Route exact path="/login" element={<Login/>} />
             <Route exact path="/register" element={<Register/>} />
             <Route exact path="/profile" element={<ProfileVehicleDashBoard/>} />
-            <Route exact path="/manageusers" element={<ManageUsers/>} />
-            <Route exact path="/todos/:id?" element={<CreateUpdateTodo/>} />
             <Route exact path="/bookings/:id?" element={<BookingDetails/>} />
             <Route exact path="/vehicles/:id?" element={<CreateUpdateVehicles/>} />
             <Route exact path="/create-booking" element={<CreateBooking/>} />
