@@ -16,7 +16,7 @@ const BookingDetails = () => {
           return;
         }
 
-        const response = await axios.get(`${process.env.REACT_APP_USER_API_HOST}/bookings/${id}`, {
+        const response = await axios.get(`${process.env.REACT_APP_USER_API_HOST}/bookings/booking-id/${id}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },

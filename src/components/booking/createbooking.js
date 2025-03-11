@@ -70,10 +70,12 @@ const CreateBooking = () => {
       : { ...formData, vehicleId: null };
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_USER_API_HOST}/bookings`, payload, {
+      const response = await axios.post(`${process.env.REACT_APP_USER_API_HOST}/bookings/create-saga-booking`, payload, {
         headers: { Authorization: `Bearer ${accessToken}` }
       });
-      navigate('/bookings');
+      const bookingResponse = response.data;
+
+      navigate(`/bookings/${bookingResponse.bookingId}`);
     } catch (error) {
       console.error('Error creating booking:', error);
     }

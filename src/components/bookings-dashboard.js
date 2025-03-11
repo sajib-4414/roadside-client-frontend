@@ -113,7 +113,7 @@ const TodoDashBoard = () => {
           {bookings.map((booking, index) => (
             <tr key={booking.id}>
               <td>{index + 1}</td>
-              <td><Link to={`/bookings/${booking.id}`}>{booking.bookingId}</Link></td>
+              <td><Link to={`/bookings/${booking.bookingId}`}>{booking.bookingId}</Link></td>
               <td>{booking.requestedBy?.name}</td>
               <td>{new Date(booking.dateCreated).toLocaleString()}</td>
               <td>{getStatusBadge(booking.status)}</td>
