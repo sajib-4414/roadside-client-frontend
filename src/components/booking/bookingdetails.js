@@ -7,6 +7,24 @@ const BookingDetails = () => {
   const [booking, setBooking] = useState(null);
   const [redirectToLogin, setRedirectToLogin] = useState(false);
 
+  const fetchWithRetry = async (url, config, retries = 3, delay = 1000) => {
+    for (let attempt = 1; attempt <= retries; attempt++) {
+      try {
+        const response = await axios.get(url, config);
+        return response.data; // Return data if request is successful
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
+          console.warn(`Attempt ${attempt} failed: 404 Not Found`);
+          if (attempt === retries) throw error; // Throw error if last attempt fails
+          await new Promise((resolve) => setTimeout(resolve, delay)); // Wait before retrying
+        } else {
+          throw error; // If it's not a 404 error, throw it immediately
+        }
+      }
+    }
+  };
+
+
   useEffect(() => {
     const fetchBookingDetails = async () => {
       try {
@@ -16,13 +34,15 @@ const BookingDetails = () => {
           return;
         }
 
-        const response = await axios.get(`${process.env.REACT_APP_USER_API_HOST}/bookings/booking-id/${id}`, {
+        const url = `${process.env.REACT_APP_USER_API_HOST}/bookings/booking-id/${id}`;
+        const config = {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
-        });
+        };
 
-        setBooking(response.data);
+        const data = await fetchWithRetry(url, config);
+        setBooking(data);
       } catch (error) {
         console.error('Error fetching booking details:', error);
       }
