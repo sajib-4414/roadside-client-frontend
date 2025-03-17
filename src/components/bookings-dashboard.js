@@ -72,6 +72,8 @@ const TodoDashBoard = () => {
         return <span className="badge bg-secondary">🟤 Queued</span>;
       case 'CREATED':
         return <span className="badge bg-primary">🟦 Created</span>;
+      case 'RESPONDER_SERVICE_UNAVAILABLE':
+        return <span className="badge bg-danger">❌ Cancelled, system error</span>;
       case 'RESPONDER_ASSIGNED':
         return <span className="badge bg-warning text-dark">🟧 Responder Assigned</span>;
       case 'RESPONDER_ON_WAY':
